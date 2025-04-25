@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "atcoder_download",
+            "type": "shell",
+            "command": "acc n ${input:contest_id}",
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "atcoder_test",
+            "type": "shell",
+            "command": "oj t -c \"python3 ${file}\" -d ${fileDirname}/tests",
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "atcoder_submit",
+            "type": "shell",
+            "command": "acc submit ${file}",
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "contest_id",
+            "description": "コンテストIDを入力してください（例：abc123）",
+            "default": "abc",
+            "type": "promptString"
+        }
+    ]
+}
