@@ -16,6 +16,7 @@ WORKDIR /workspace
 RUN apt-get update && apt-get install -y \
     time \
     tzdata \
+    vim \
     python3 \
     tree \
     git \
@@ -37,6 +38,11 @@ RUN npm install -g atcoder-cli
 # C++でAtCoder Library(ACL)を使えるようにする
 RUN git clone https://github.com/atcoder/ac-library.git /lib/ac-library
 ENV CPLUS_INCLUDE_PATH /lib/ac-library
+
+RUN acc config oj-path /usr/local/bin/oj && \
+    acc config default-task-choice all && \
+    acc config default-test-dirname-format test && \
+    acc config default-template cpp
 
 # シェルの設定
 SHELL ["/bin/bash", "-c"]

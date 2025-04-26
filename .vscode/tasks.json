@@ -2,9 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "atcoder_download",
+            "label": "download",
             "type": "shell",
-            "command": "acc n ${input:contest_id}",
+            "command": "acc new ${input:contest_id}",
+            "options": {
+                "cwd": "${workspaceFolder}/src"
+            },
             "presentation": {
                 "reveal": "always",
                 "focus": true,
@@ -13,9 +16,12 @@
             "problemMatcher": []
         },
         {
-            "label": "atcoder_test",
+            "label": "compile",
             "type": "shell",
-            "command": "oj t -c \"python3 ${file}\" -d ${fileDirname}/tests",
+            "command": "g++ -std=c++17 -O2 -Wall -Wextra ${file} -o ${fileDirname}/${fileBasenameNoExtension}.exe",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "presentation": {
                 "reveal": "always",
                 "focus": true,
@@ -24,15 +30,34 @@
             "problemMatcher": []
         },
         {
-            "label": "atcoder_submit",
+            "label": "test",
+            "type": "shell",
+            "command": "oj t -c \"${fileDirname}/${fileBasenameNoExtension}.exe\" -d ${fileDirname}/tests",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "dependsOn": ["compile"]
+        },
+        {
+            "label": "submit",
             "type": "shell",
             "command": "acc submit ${file}",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "presentation": {
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared"
             },
-            "problemMatcher": []
+            "problemMatcher": [],
+            "dependsOn": ["compile"]
         }
     ],
     "inputs": [

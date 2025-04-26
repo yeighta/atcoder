@@ -3,6 +3,7 @@ services:
     build: .
     volumes:
       - .:/workspace
+      - .acc-config:/root/.acc-config/cpp
       - venv:/workspace/.venv
     tty: true
     stdin_open: true
