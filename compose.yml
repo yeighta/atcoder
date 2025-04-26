@@ -3,7 +3,7 @@ services:
     build: .
     volumes:
       - .:/workspace
-      - .acc-config:/root/.acc-config/cpp
+      - .acc-config:/root/.config/atcoder-cli-nodejs/cpp
       - venv:/workspace/.venv
     tty: true
     stdin_open: true
